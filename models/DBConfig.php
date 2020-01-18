@@ -89,5 +89,58 @@
 				return FALSE;
 			}
 		}
+		public function addFollow($user_id,$follow_user_id,$follow_status,$display_status){
+			$query = "INSERT INTO follows(user_id,follow_user_id,follow_status,display_status) VALUES(:user_id,:follow_user_id,:follow_status,:display_status)";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':follow_user_id' => $follow_user_id,
+				':follow_status' => $follow_status,
+				':display_status' => $display_status
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				return TRUE;
+			}
+			return FALSE;
+		}
+		public function updateFollow($user_id,$follow_user_id,$follow_status,$display_status){
+			$query = "UPDATE follows SET follow_status = :follow_status,display_status = :display_status WHERE user_id = :user_id AND follow_user_id = :follow_user_id";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':follow_user_id' => $follow_user_id,
+				':follow_status' => $follow_status,
+				':display_status' => $display_statuss
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				return TRUE;
+			}
+			return FALSE;
+		}
+		public function checkFollow($user_id,$follow_user_id){
+			$query = "SELECT * FROM follows WHERE user_id = :user_id AND follow_user_id = :follow_user_id";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':follow_user_id' => $follow_user_id
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+			return FALSE;
+		}
 	}
 ?>

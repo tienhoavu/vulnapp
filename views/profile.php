@@ -23,6 +23,7 @@
   </head>
 
   <body>
+   
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal">Cyber Links</h5>
       <nav class="my-2 my-md-0 mr-md-3">
@@ -44,7 +45,7 @@
               <a class="p-2 text-dark" href="/vulnapp/profile/<?=$info[0]['username']?>"><!-- Nguyen Anh Tien --> <?=$info[0]['name']?> </a>
               <div>
                 <?php if($flag_follow == 1){ ?>
-                <a class="btn btn-outline-primary" href="#">Follow</a>
+                <a class="btn btn-outline-primary" href="#"><?=$display_status?></a>
                 <?php } ?>
                 <hr>
                 <?php if($flag_rq_follow==1){ ?>
