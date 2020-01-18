@@ -28,7 +28,7 @@
       <nav class="my-2 my-md-0 mr-md-3">
         <img class="rounded-circle" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
           style="height: 32px;">
-        <a class="p-2 text-dark" href="/vulnapp/profile"><?=$_SESSION['name']?></a>
+        <a class="p-2 text-dark" href="/vulnapp/profile/<?=$_SESSION['username']?>"><?=$_SESSION['name']?></a>
       </nav>
       <a class="btn btn-outline-primary" href="/vulnapp/signout">Sign out</a>
     </div>

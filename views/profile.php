@@ -28,7 +28,7 @@
       <nav class="my-2 my-md-0 mr-md-3">
         <img class="rounded-circle" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
           style="height: 32px;">
-        <a class="p-2 text-dark" href="profile"><?=$_SESSION['name']?></a>
+        <a class="p-2 text-dark" href="/vulnapp/profile/<?=$_SESSION['username']?>"><?=$_SESSION['name']?></a>
       </nav>
       <a class="btn btn-outline-primary" href="/vulnapp/signout">Sign out</a>
     </div>
@@ -40,11 +40,14 @@
             <div class="d-flex flex-column my-3 p-3 bg-white rounded shadow-sm text-center">
               <img class="rounded-circle mx-auto" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
                 width="64" height="64">
-              <strong class="p-2 text-muted" href="#">@vigov5</strong>
-              <a class="p-2 text-dark" href="#">Nguyen Anh Tien</a>
+              <strong class="p-2 text-muted" href="#"><!-- @vigov5 --> <?="@".$info[0]['username']?> </strong>
+              <a class="p-2 text-dark" href="/vulnapp/profile/<?=$info[0]['username']?>"><!-- Nguyen Anh Tien --> <?=$info[0]['name']?> </a>
               <div>
+                <?php if($flag_follow == 1){ ?>
                 <a class="btn btn-outline-primary" href="#">Follow</a>
+                <?php } ?>
                 <hr>
+                <?php if($flag_rq_follow==1){ ?>
                 <div>
                   <label for="exampleFormControlFile1">
                     <h6>Change Avatar</h6>
@@ -52,8 +55,10 @@
                   <input type="file" class="form-control-file" id="exampleFormControlFile1">
                   <button class="btn-sm mt-2 btn-primary" href="#">Upload</button>
                 </div>
+                <?php } ?>
               </div>
             </div>
+            <?php if($flag_rq_follow==1){ ?>
             <div class="d-flex flex-column my-10 px-2 pb-4 bg-white rounded shadow-sm text-center">
               <h5 class="mb-5">Follow Requests</h5>
               <div class="d-flex flex-row mb-2 justify-content-between">
@@ -71,6 +76,7 @@
                 </div>
               </div>
             </div>
+            <?php } ?>
           </div>
           <div class="col-8">
             <div class="my-3 p-3 bg-white rounded shadow-sm">

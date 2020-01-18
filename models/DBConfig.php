@@ -72,5 +72,22 @@
 				return FALSE;
 			}
 		}
+		public function checkUser($username){
+			$query = "SELECT * FROM users WHERE username = :username";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':username' => $username
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+		}
 	}
 ?>
