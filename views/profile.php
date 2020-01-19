@@ -94,7 +94,7 @@
                 <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
                   style="height: 32px;">
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <span class="d-block text-gray-dark"><strong>Nguyen Anh Tien</strong><span>&nbsp;@userA</span></span>
+                  <span class="d-block text-gray-dark"><!-- <strong>Nguyen Anh Tien</strong> --><strong><a style="color:#6c757d;" href="/vulnapp/profile/<?=$info[0]['username']?>"><?=$info[0]['name']?></a></strong><span>&nbsp;@<?=$info[0]['username']?></span></span>
                   Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
                   mauris
                   condimentum nibh, ut fermentum massa justo sit amet risus.
@@ -109,7 +109,7 @@
                 <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/deptrai@adorable.png" alt=""
                   style="height: 32px;">
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <span class="d-block text-gray-dark"><strong>Nguyen Anh Tien</strong><span>&nbsp;@userA</span></span>
+                  <span class="d-block text-gray-dark"><!-- <strong>Nguyen Anh Tien</strong> --><strong><a style="color:#6c757d;" href="#">Nguyen Anh Tien</a></strong><span>&nbsp;@userA</span></span>
                   Private link! Only followers can see.
                 </p>
                 <small class="ml-2">
@@ -122,7 +122,7 @@
                 <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/khanhact@adorable.png" alt=""
                   style="height: 32px;">
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <span class="d-block text-gray-dark"><strong>Nguyen Anh Tien</strong><span>&nbsp;@userA</span></span>
+                  <span class="d-block text-gray-dark"><!-- <strong>Nguyen Anh Tien</strong> --><strong><a style="color:#6c757d;" href="#">Nguyen Anh Tien</a></strong><span>&nbsp;@userA</span></span></span>
                   Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
                   mauris
                   condimentum nibh, ut fermentum massa justo sit amet risus.

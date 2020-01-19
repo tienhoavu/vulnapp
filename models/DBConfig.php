@@ -160,5 +160,24 @@
 				return FALSE;
 			}
 		}
+		public function addPost($user_id,$post_content,$post_status){
+			$query = "INSERT INTO posts(user_id,post_content,post_status) VALUES (:user_id,:post_content,:post_status)";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':post_content' => $post_content,
+				':post_status' => $post_status
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				return TRUE;
+			}
+			return FALSE;
+		}
+		public function getAllPosts(){
+			
+		}
 	}
 ?>

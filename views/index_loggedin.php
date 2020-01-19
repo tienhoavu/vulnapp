@@ -34,10 +34,10 @@
     </div>
 
     <main role="main" class="container">
-      <form class="mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="New link..." aria-label="Search">
-        <button class="btn btn-success my-2" type="submit">Post</button>
-        <select id="inputGroupSelect01">
+      <form method="post" class="mt-2 mt-md-0">
+        <input name="post_content" maxlength="150" class="form-control mr-sm-2" type="text" placeholder="New link..." aria-label="Search">
+        <button name="share" class="btn btn-success my-2" type="submit">Post</button>
+        <select name="post_status" id="inputGroupSelect01">
           <option value="public">Public</option>
           <option value="private">Private</option>
         </select>
@@ -48,7 +48,7 @@
           <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
             style="height: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <span class="d-block text-gray-dark"><strong>Nguyen Anh Tien</strong><span>&nbsp;@userA</span></span>
+            <span class="d-block text-gray-dark"><strong><a style="color:#6c757d;" href="#">Nguyen Anh Tien</a></strong><span>&nbsp;@userA</span></span>
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
             condimentum nibh, ut fermentum massa justo sit amet risus.
           </p>
@@ -62,7 +62,7 @@
           <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/deptrai@adorable.png" alt=""
             style="height: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <span class="d-block text-gray-dark"><strong>Nguyen Anh Tien</strong><span>&nbsp;@userA</span></span>
+            <span class="d-block text-gray-dark"><strong><a style="color:#6c757d;" href="#">Nguyen Anh Tien</a></strong><span>&nbsp;@userA</span></span>
             Private link! Only followers can see.
           </p>
           <small class="ml-2">
@@ -75,7 +75,7 @@
           <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/khanhact@adorable.png" alt=""
             style="height: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <span class="d-block text-gray-dark"><strong>Nguyen Anh Tien</strong><span>&nbsp;@userA</span></span>
+            <span class="d-block text-gray-dark"><strong><a style="color:#6c757d;" href="#">Nguyen Anh Tien</a></strong><span>&nbsp;@userA</span></span>
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
             condimentum nibh, ut fermentum massa justo sit amet risus.
           </p>
