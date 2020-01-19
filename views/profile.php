@@ -23,7 +23,6 @@
   </head>
 
   <body>
-   
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal">Cyber Links</h5>
       <nav class="my-2 my-md-0 mr-md-3">
@@ -45,7 +44,7 @@
               <a class="p-2 text-dark" href="/vulnapp/profile/<?=$info[0]['username']?>"><!-- Nguyen Anh Tien --> <?=$info[0]['name']?> </a>
               <div>
                 <?php if($flag_follow == 1){ ?>
-                <a class="btn btn-outline-primary" href="#"><?=$display_status?></a>
+                <a class="btn btn-outline-primary" href="/vulnapp/profile/<?=$info[0]['username']?>/follow"><?=$display_status?></a>
                 <?php } ?>
                 <hr>
                 <?php if($flag_rq_follow==1){ ?>
@@ -62,20 +61,29 @@
             <?php if($flag_rq_follow==1){ ?>
             <div class="d-flex flex-column my-10 px-2 pb-4 bg-white rounded shadow-sm text-center">
               <h5 class="mb-5">Follow Requests</h5>
+              <?php if($checkRequestFollow!=FALSE){
+                        foreach ($checkRequestFollow as $row) {
+              ?>
               <div class="d-flex flex-row mb-2 justify-content-between">
+                <div class="text-left col-6"><!-- Tuan @tuan --> 
+                  <a class="p-2 text-dark" href="/vulnapp/profile/<?=$row['username']?>"><!-- Nguyen Anh Tien -->  <?=$row['name']?></a><?="@".$row['username']?> 
+                </div>
+                <div class="col-6 d-flex flex-row justify-content-end">
+                  <a class="btn-sm mr-2 btn-primary" href="&approve=<?=$row['username']?>">Approve</a>
+                  <a class="btn-sm btn-danger" href="&reject=<?=$row['username']?>">Reject</a>
+                </div>
+              </div>
+              <?php     
+                        }
+                    }
+              ?>
+              <!-- <div class="d-flex flex-row mb-2 justify-content-between">
                 <div class="text-left col-6">Tuan @tuan</div>
                 <div class="col-6 d-flex flex-row justify-content-end">
                   <a class="btn-sm mr-2 btn-primary" href="#">Approve</a>
                   <a class="btn-sm btn-danger" href="#">Reject</a>
                 </div>
-              </div>
-              <div class="d-flex flex-row mb-2 justify-content-between">
-                <div class="text-left col-6">Tuan @tuan</div>
-                <div class="col-6 d-flex flex-row justify-content-end">
-                  <a class="btn-sm mr-2 btn-primary" href="#">Approve</a>
-                  <a class="btn-sm btn-danger" href="#">Reject</a>
-                </div>
-              </div>
+              </div> -->
             </div>
             <?php } ?>
           </div>

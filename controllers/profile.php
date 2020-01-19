@@ -4,7 +4,9 @@
 	$username = $_SESSION['username'];
 	$flag_follow = 0;
 	$flag_rq_follow = 1;
-	$display_follow = 'Follow';
+	if(!$_SESSION['user_id']){
+		header("location: ./");
+	}
 	if(!empty($data[1])){
 		$username = $data[1];
 		$info = $db->checkUser($username);
@@ -21,61 +23,76 @@
 			else{
 				$flag_follow = 1;
 				$flag_rq_follow = 0;
-				if (!empty($data[2])) {
+				if (!empty($data[2]) && $data[2] == 'follow') {
 					$action = $data[2];
-					$display_follow = 'Follow';
-					if($action == 'follow'){
-						$checkFollow = $db->checkFollow($_SESSION['user_id'],$info[0]['user_id']);
-						if($checkFollow == FALSE){
-							$db->addFollow($_SESSION['user_id'],$info[0]['user_id'],'waiting','Waiting');
-							// $display_follow = 'Waiting';
-							header("location: ./");
-						}
-						else{
-							$follow_status = $checkFollow[0]['follow_status'];
-							switch ($follow_status) {
-								case 'follow':
-									$db->updateFollow($_SESSION['user_id'],$info[0]['user_id'],'unfollow','Follow');
-									// $display_follow = 'Follow';
-									break;
-								case 'unfollow':
-									$db->updateFollow($_SESSION['user_id'],$info[0]['user_id'],'waiting','Waiting');
-									// $display_follow = 'Waiting';
-									break;
-								case 'waiting':
-									$db->updateFollow($_SESSION['user_id'],$info[0]['user_id'],'unfollow','Follow');
-									// $display_follow = 'Follow';
-									break;
-								default:
-									# code...
-									break;
-							}
-						}
+					$checkFollow = $db->checkFollow($_SESSION['user_id'], $info[0]['user_id']);
+					if($checkFollow == FALSE){
+						$db->addFollow($_SESSION['user_id'],$info[0]['user_id'],'waiting','Waiting');
+						header("location: ./");
+						// $display_status = 'Waiting';
 					}
 					else{
-						// $checkFollow = $db->checkFollow($_SESSION['user_id'],$info[0]['user_id']);
-						// $follow_status = $checkFollow[0]['follow_status'];
-						// switch ($follow_status) {
-						// 		case 'follow':
-						// 			$display_follow = 'Unfollow';
-						// 			break;
-						// 		case 'unfollow':
-						// 			$display_follow = 'Follow';
-						// 			break;
-						// 		case 'waiting':
-						// 			$display_follow = 'Waiting';
-						// 			break;
-						// 		default:
-						// 			# code...
-						// 			break;
-						// 	}
+						$follow_status = $checkFollow[0]['follow_status'];
+						switch ($follow_status) {
+							case 'follow':
+								$db->updateFollow($_SESSION['user_id'],$info[0]['user_id'],'unfollow','Follow');
+								header("location: ./");
+								break;
+							case 'unfollow':
+								$db->updateFollow($_SESSION['user_id'],$info[0]['user_id'],'waiting','Waiting');
+
+								header("location: ./");
+								break;
+							case 'waiting':
+								$db->updateFollow($_SESSION['user_id'],$info[0]['user_id'],'unfollow','Follow');
+								header("location: ./");
+								break;
+							default:
+								# code...
+								break;
+						}
+					}
+				}
+				else{
+
+				}
+			}
+		}
+	}
+	if(isset($_GET['approve'])){
+		$approve_user = $_GET['approve'];
+		$checkRequestFollow = $db->checkRequestFollow($_SESSION['user_id']);
+		if($checkRequestFollow!=FALSE){
+			foreach ($checkRequestFollow as $row) {
+				if($approve_user == $row['username']){
+					if($db->updateFollow($row['user_id'],$_SESSION['user_id'],'follow','UnFollow')){
+						header("location: ./");
+					}
+				}
+			}
+		}
+	}
+	if(isset($_GET['reject'])){
+		$reject_user = $_GET['reject'];
+		$checkRequestFollow = $db->checkRequestFollow($_SESSION['user_id']);
+		if($checkRequestFollow!=FALSE){
+			foreach ($checkRequestFollow as $row) {
+				if($reject_user == $row['username']){
+					if($db->updateFollow($row['user_id'],$_SESSION['user_id'],'unfollow','Follow')){
+						header("location: ./");
 					}
 				}
 			}
 		}
 	}
 	$info = $db->checkUser($username);
-	// $checkFollow = $db->checkFollow($_SESSION['user_id'],$info[0]['user_id']);
-	// $display_status = $checkFollow[0]['display_status'];
+	$checkFollow = $db->checkFollow($_SESSION['user_id'],$info[0]['user_id']);
+	if($checkFollow == FALSE){
+		$display_status = 'Follow';
+	}
+	else{
+		$display_status = $checkFollow[0]['display_status'];
+	}
+	$checkRequestFollow = $db->checkRequestFollow($_SESSION['user_id']);
 	require_once("./views/profile.php");
 ?>

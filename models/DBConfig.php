@@ -113,7 +113,7 @@
 				':user_id' => $user_id,
 				':follow_user_id' => $follow_user_id,
 				':follow_status' => $follow_status,
-				':display_status' => $display_statuss
+				':display_status' => $display_status
 			);
 			foreach ($data as $key => &$value) {
 				$stmt->bindParam($key,$value);
@@ -141,6 +141,24 @@
 				return FALSE;
 			}
 			return FALSE;
+		}
+		public function checkRequestFollow($follow_user_id){
+			$query = "SELECT * FROM users LEFT JOIN follows ON users.user_id = follows.user_id WHERE follows.follow_user_id = :follow_user_id AND follows.follow_status = :follow_status";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':follow_user_id' => $follow_user_id,
+				':follow_status' => 'waiting'
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
 		}
 	}
 ?>
