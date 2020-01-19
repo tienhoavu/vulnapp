@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2020 at 10:15 AM
+-- Generation Time: Jan 19, 2020 at 11:59 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -55,6 +55,35 @@ INSERT INTO `follows` (`follow_id`, `user_id`, `follow_user_id`, `follow_status`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `post_status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_status`) VALUES
+(1, 4, 'hello', 'public'),
+(2, 2, 'hello user 2', 'private'),
+(3, 2, 'hello user 2 day', 'private'),
+(4, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
+(5, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
+(6, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
+(7, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
+(8, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
+(9, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
+(10, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'private');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -90,6 +119,12 @@ ALTER TABLE `follows`
   ADD PRIMARY KEY (`follow_id`);
 
 --
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`post_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -104,6 +139,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `follows`
   MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
