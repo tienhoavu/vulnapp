@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 20, 2020 lúc 05:16 AM
+-- Thời gian đã tạo: Th1 20, 2020 lúc 09:15 AM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.1
 
@@ -48,7 +48,7 @@ INSERT INTO `follows` (`follow_id`, `user_id`, `follow_user_id`, `follow_status`
 (10, 35, 1, 'waiting', 'Waiting'),
 (11, 2, 35, 'waiting', 'Waiting'),
 (12, 35, 2, 'follow', 'UnFollow'),
-(13, 3, 2, 'unfollow', 'Follow'),
+(13, 3, 2, 'follow', 'UnFollow'),
 (14, 4, 2, 'follow', 'UnFollow'),
 (15, 4, 3, 'waiting', 'Waiting'),
 (16, 1, 2, 'follow', 'UnFollow');
@@ -65,6 +65,36 @@ CREATE TABLE `likes` (
   `post_id` int(11) NOT NULL,
   `like_status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `likes`
+--
+
+INSERT INTO `likes` (`like_id`, `user_id`, `post_id`, `like_status`) VALUES
+(1, 2, 25, 'like'),
+(2, 2, 24, 'like'),
+(3, 2, 21, 'like'),
+(4, 3, 21, 'like'),
+(5, 3, 20, 'like'),
+(6, 2, 20, 'like'),
+(7, 2, 22, 'unlike'),
+(8, 2, 23, 'like'),
+(9, 2, 19, 'like'),
+(10, 2, 17, 'like'),
+(11, 2, 16, 'like'),
+(12, 2, 18, 'like'),
+(13, 3, 25, 'unlike'),
+(14, 3, 24, 'like'),
+(15, 3, 23, 'like'),
+(16, 2, 9, 'like'),
+(17, 2, 8, 'like'),
+(18, 2, 7, 'like'),
+(19, 2, 6, 'unlike'),
+(20, 2, 5, 'like'),
+(21, 2, 4, 'like'),
+(22, 2, 3, 'like'),
+(23, 2, 2, 'like'),
+(24, 2, 10, 'like');
 
 -- --------------------------------------------------------
 
@@ -104,7 +134,11 @@ INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_status`) VALUES
 (18, 2, 'hello', 'public'),
 (19, 2, 'hello private by user2', 'public'),
 (20, 2, 'hello private by user2', 'private'),
-(21, 2, 'hello private by user2', 'private');
+(21, 2, 'hello private by user2', 'private'),
+(22, 3, 'hello private by user3', 'private'),
+(23, 3, 'hello private by user3', 'public'),
+(24, 3, 'hello', 'public'),
+(25, 3, 'hello', 'public');
 
 -- --------------------------------------------------------
 
@@ -175,13 +209,13 @@ ALTER TABLE `follows`
 -- AUTO_INCREMENT cho bảng `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
