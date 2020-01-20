@@ -25,6 +25,7 @@
 					}
 				}
 				$getAllPosts = $db->getAllPosts();
+				require_once("likes.php");
 				require_once("./views/index_loggedin.php");
 			}
 		}

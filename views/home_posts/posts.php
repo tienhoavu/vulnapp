@@ -14,7 +14,9 @@
             <?=$row['post_content']?>
           </p>
           <small class="ml-2">
-            <a href="#">12 Likes</a>
+            <a href="/vulnapp/home&like=<?=$row['post_id']?>"><!-- 12 Likes --><?php $countLike=$db->countLike($row['post_id']);
+            	echo $countLike[0]['countLike']." Likes";
+            ?></a>
             <br>
             <a href="#" class="text-muted">Report</a>
           </small>
@@ -35,7 +37,9 @@
            <!--  Private link! Only followers can see. --><?=$row['post_content']?>
           </p>
           <small class="ml-2">
-            <a href="#">12 Likes</a>
+            <a href="/vulnapp/home&like=<?=$row['post_id']?>"><?php $countLike=$db->countLike($row['post_id']);
+            	echo $countLike[0]['countLike']." Likes";
+            ?></a>
             <br>
             <a href="#" class="text-muted">Report</a>
           </small>
@@ -59,7 +63,9 @@
            <!--  Private link! Only followers can see. --><?=$row['post_content']?>
           </p>
           <small class="ml-2">
-            <a href="#">12 Likes</a>
+            <a href="/vulnapp/home&like=<?=$row['post_id']?>"><?php $countLike=$db->countLike($row['post_id']);
+            	echo $countLike[0]['countLike']." Likes";
+            ?></a>
             <br>
             <a href="#" class="text-muted">Report</a>
           </small>
@@ -80,7 +86,9 @@
             Private link! Only followers can see.
           </p>
           <small class="ml-2">
-            <a href="#">12 Likes</a>
+            <a href="/vulnapp/home&like=<?=$row['post_id']?>"><?php $countLike=$db->countLike($row['post_id']);
+            	echo $countLike[0]['countLike']." Likes";
+            ?></a>
             <br>
             <a href="#" class="text-muted">Report</a>
           </small>

@@ -207,7 +207,92 @@
 			return FALSE;
 		}
 		public function addLike($user_id,$post_id,$like_status){
-			
+			$query = "INSERT INTO likes(user_id,post_id,like_status) VALUES (:user_id,:post_id,:like_status)";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':post_id' => $post_id,
+				':like_status' => $like_status
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				return TRUE;
+			}
+			return FALSE;
+		}
+		public function updateLike($user_id,$post_id,$like_status){
+			$query = "UPDATE likes SET like_status = :like_status WHERE user_id = :user_id AND post_id = :post_id";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':post_id' => $post_id,
+				':like_status' => $like_status
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				return TRUE;
+			}
+			return FALSE;
+		}
+		public function checkLikePost($user_id,$post_id){
+			$query = "SELECT * FROM likes WHERE user_id = :user_id AND post_id = :post_id";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':post_id' => $post_id
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+			return FALSE;
+		}
+		public function checkPost($post_id){
+			$query =  "SELECT * FROM posts WHERE post_id = :post_id";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':post_id' => $post_id
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+			return FALSE;
+		}
+		public function countLike($post_id){
+			$query = "SELECT COUNT(like_status) AS countLike FROM likes WHERE post_id = :post_id AND like_status = :like_status";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':post_id' => $post_id,
+				':like_status' => 'like'
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+			return FALSE;
 		}
 	}
 ?>

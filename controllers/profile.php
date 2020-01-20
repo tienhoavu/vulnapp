@@ -95,5 +95,6 @@
 	}
 	$checkRequestFollow = $db->checkRequestFollow($_SESSION['user_id']);
 	$getAllPostsByUsername = $db->getAllPostsByUsername($username);
+	require_once("likes.php");
 	require_once("./views/profile.php");
 ?>
