@@ -44,7 +44,7 @@
       </form>
       <div class="my-3 p-3 bg-white rounded shadow-sm">
         <h6 class="border-bottom border-gray pb-2 mb-0">Recent links</h6>
-        <div class="media text-muted pt-3">
+        <!-- <div class="media text-muted pt-3">
           <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
             style="height: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -57,8 +57,9 @@
             <br>
             <a href="#" class="text-muted">Report</a>
           </small>
-        </div>
-        <div class="media text-muted pt-3">
+        </div> -->
+        <?php require_once("home_posts/posts.php"); ?>
+      <!--   <div class="media text-muted pt-3">
           <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/deptrai@adorable.png" alt=""
             style="height: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -70,8 +71,8 @@
             <br>
             <a href="#" class="text-muted">Report</a>
           </small>
-        </div>
-        <div class="media text-muted pt-3">
+        </div> -->
+        <!-- <div class="media text-muted pt-3">
           <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/khanhact@adorable.png" alt=""
             style="height: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -84,7 +85,7 @@
             <br>
             <a href="#" class="text-muted">Report</a>
           </small>
-        </div>
+        </div> -->
         <small class="d-block text-right mt-3">
           <a href="#">All links</a>
         </small>

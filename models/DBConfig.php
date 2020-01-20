@@ -177,7 +177,16 @@
 			return FALSE;
 		}
 		public function getAllPosts(){
-			
+			$query = "SELECT * FROM posts LEFT JOIN users ON posts.user_id = users.user_id ORDER BY posts.post_id DESC LIMIT 10";
+			$stmt = $this->conn->prepare($query);
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+			return FALSE;
 		}
 	}
 ?>

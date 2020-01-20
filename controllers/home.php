@@ -24,7 +24,7 @@
 						$db->addPost($_SESSION['user_id'],$post_content,$post_status);
 					}
 				}
-				
+				$getAllPosts = $db->getAllPosts();
 				require_once("./views/index_loggedin.php");
 			}
 		}
