@@ -94,5 +94,6 @@
 		$display_status = $checkFollow[0]['display_status'];
 	}
 	$checkRequestFollow = $db->checkRequestFollow($_SESSION['user_id']);
+	$getAllPostsByUsername = $db->getAllPostsByUsername($username);
 	require_once("./views/profile.php");
 ?>

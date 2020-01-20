@@ -188,5 +188,26 @@
 			}
 			return FALSE;
 		}
+		public function getAllPostsByUsername($username){
+			$query = "SELECT * FROM posts LEFT JOIN users ON posts.user_id = users.user_id WHERE users.username = :username ORDER BY posts.post_id DESC";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':username' => $username
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+			return FALSE;
+		}
+		public function addLike($user_id,$post_id,$like_status){
+			
+		}
 	}
 ?>

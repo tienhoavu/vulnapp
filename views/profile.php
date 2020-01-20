@@ -24,7 +24,7 @@
 
   <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Cyber Links</h5>
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a style="color:#212529;" href="/vulnapp/home">Cyber Links</a></h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <img class="rounded-circle" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
           style="height: 32px;">
@@ -90,49 +90,8 @@
           <div class="col-8">
             <div class="my-3 p-3 bg-white rounded shadow-sm">
               <h6 class="border-bottom border-gray pb-2 mb-0">Recent links</h6>
-              <div class="media text-muted pt-3">
-                <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
-                  style="height: 32px;">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <span class="d-block text-gray-dark"><!-- <strong>Nguyen Anh Tien</strong> --><strong><a style="color:#6c757d;" href="/vulnapp/profile/<?=$info[0]['username']?>"><?=$info[0]['name']?></a></strong><span>&nbsp;@<?=$info[0]['username']?></span></span>
-                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                  mauris
-                  condimentum nibh, ut fermentum massa justo sit amet risus.
-                </p>
-                <small class="ml-2">
-                  <a href="#">12 Likes</a>
-                  <br>
-                  <a href="#" class="text-muted">Report</a>
-                </small>
-              </div>
-              <div class="media text-muted pt-3">
-                <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/deptrai@adorable.png" alt=""
-                  style="height: 32px;">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <span class="d-block text-gray-dark"><!-- <strong>Nguyen Anh Tien</strong> --><strong><a style="color:#6c757d;" href="#">Nguyen Anh Tien</a></strong><span>&nbsp;@userA</span></span>
-                  Private link! Only followers can see.
-                </p>
-                <small class="ml-2">
-                  <a href="#">12 Likes</a>
-                  <br>
-                  <a href="#" class="text-muted">Report</a>
-                </small>
-              </div>
-              <div class="media text-muted pt-3">
-                <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/khanhact@adorable.png" alt=""
-                  style="height: 32px;">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <span class="d-block text-gray-dark"><!-- <strong>Nguyen Anh Tien</strong> --><strong><a style="color:#6c757d;" href="#">Nguyen Anh Tien</a></strong><span>&nbsp;@userA</span></span></span>
-                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                  mauris
-                  condimentum nibh, ut fermentum massa justo sit amet risus.
-                </p>
-                <small class="ml-2">
-                  <a href="#">12 Likes</a>
-                  <br>
-                  <a href="#" class="text-muted">Report</a>
-                </small>
-              </div>
+             <?php require_once("profile/profile_post.php"); ?>
+              
               <small class="d-block text-center mt-3">
                 <strong>The End</strong>
               </small>

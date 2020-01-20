@@ -2,10 +2,10 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 19, 2020 at 11:59 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th1 20, 2020 lúc 05:16 AM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `vulnapp`
+-- Cơ sở dữ liệu: `vulnapp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `follows`
+-- Cấu trúc bảng cho bảng `follows`
 --
 
 CREATE TABLE `follows` (
@@ -37,25 +37,39 @@ CREATE TABLE `follows` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `follows`
+-- Đang đổ dữ liệu cho bảng `follows`
 --
 
 INSERT INTO `follows` (`follow_id`, `user_id`, `follow_user_id`, `follow_status`, `display_status`) VALUES
-(6, 2, 3, 'waiting', 'Waiting'),
-(7, 2, 4, 'follow', 'UnFollow'),
+(6, 2, 3, 'follow', 'UnFollow'),
+(7, 2, 4, 'waiting', 'Waiting'),
 (8, 2, 1, 'unfollow', 'Follow'),
 (9, 2, 0, 'waiting', 'Waiting'),
 (10, 35, 1, 'waiting', 'Waiting'),
 (11, 2, 35, 'waiting', 'Waiting'),
 (12, 35, 2, 'follow', 'UnFollow'),
-(13, 3, 2, 'follow', 'UnFollow'),
+(13, 3, 2, 'unfollow', 'Follow'),
 (14, 4, 2, 'follow', 'UnFollow'),
-(15, 4, 3, 'waiting', 'Waiting');
+(15, 4, 3, 'waiting', 'Waiting'),
+(16, 1, 2, 'follow', 'UnFollow');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
+-- Cấu trúc bảng cho bảng `likes`
+--
+
+CREATE TABLE `likes` (
+  `like_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `like_status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `posts`
 --
 
 CREATE TABLE `posts` (
@@ -66,7 +80,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `posts`
+-- Đang đổ dữ liệu cho bảng `posts`
 --
 
 INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_status`) VALUES
@@ -79,12 +93,23 @@ INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_status`) VALUES
 (7, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
 (8, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
 (9, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'public'),
-(10, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'private');
+(10, 2, '&lt;script&gt; alert(1); &lt;/script&gt;', 'private'),
+(11, 4, 'hello bai nay private', 'private'),
+(12, 4, 'hello bai nay private', 'private'),
+(13, 4, 'hello private', 'private'),
+(14, 4, 'hello private day', 'private'),
+(15, 3, 'private day', 'private'),
+(16, 2, 'hello', 'public'),
+(17, 2, 'hello private by user2', 'private'),
+(18, 2, 'hello', 'public'),
+(19, 2, 'hello private by user2', 'public'),
+(20, 2, 'hello private by user2', 'private'),
+(21, 2, 'hello private by user2', 'private');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -97,7 +122,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`user_id`, `email`, `name`, `username`, `password`, `permission`) VALUES
@@ -109,45 +134,57 @@ INSERT INTO `users` (`user_id`, `email`, `name`, `username`, `password`, `permis
 (35, 'user5@gmail.com', 'nam', 'user5', '$2y$10$CHowhwvELwmtGKpNexZYGONeLCuQcpFvYHhvinVi04qm5.p7Jcm6G', 1);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `follows`
+-- Chỉ mục cho bảng `follows`
 --
 ALTER TABLE `follows`
   ADD PRIMARY KEY (`follow_id`);
 
 --
--- Indexes for table `posts`
+-- Chỉ mục cho bảng `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`like_id`);
+
+--
+-- Chỉ mục cho bảng `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`post_id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `follows`
+-- AUTO_INCREMENT cho bảng `follows`
 --
 ALTER TABLE `follows`
-  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT cho bảng `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
