@@ -4,7 +4,7 @@
 	$username = $_SESSION['username'];
 	$flag_follow = 0;
 	$flag_rq_follow = 1;
-	if(!$_SESSION['user_id']){
+	if(!isset($_SESSION['user_id'])){
 		header("location: ./");
 	}
 	if(!empty($data[1])){
@@ -95,7 +95,14 @@
 		$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 		$maxfilesize = 900000;
 		$allowtypes = array('jpg','png','jpeg','gif');
-		$check = getimagesize($_FILES['profile_image']['tmp_name']);
+		if(!empty($_FILES['profile_image']['tmp_name'])){
+			$check = getimagesize($_FILES['profile_image']['tmp_name']);
+		}
+		else{
+			$check = false;
+		}
+		// $check = empty(getimagesize($_FILES['profile_image']['tmp_name'])) ? "1" : getimagesize($_FILES['profile_image']['tmp_name']);
+		// $check = getimagesize($_FILES['profile_image']['tmp_name']);
 		if($check !==false){
 			$allowUpload = true;
 			$messageUpload = "<div class='alert alert-success'>Avatar Change Successfully</div>";
