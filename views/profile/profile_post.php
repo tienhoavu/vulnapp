@@ -11,8 +11,8 @@
 			if($row['post_status']=='public'){
 ?>
 <div class="media text-muted pt-3">
-          <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
-            style="height: 32px;">
+          <img class="rounded-circle mr-2" s<?php if($info[0]['avatar']===NULL){ ?> src="https://api.adorable.io/avatars/285/abott@adorable.png" <?php }else{ ?> src="/vulnapp/public/images/<?=$info[0]['avatar']?>" <?php } ?> alt=""
+          style="height: 32px; width: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <span class="d-block text-gray-dark"><strong><a style="color:#6c757d;" href="/vulnapp/profile/<?=$row['username']?>"><!-- Nguyen Anh Tien --><?=$row['name']?></a></strong><span>&nbsp;@<?=$row['username']?></span></span>
            <!--  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
@@ -36,8 +36,8 @@
 ?>
 
   <div class="media text-muted pt-3">
-          <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/deptrai@adorable.png" alt=""
-            style="height: 32px;">
+          <img class="rounded-circle mr-2" <?php if($info[0]['avatar']===NULL){ ?> src="https://api.adorable.io/avatars/285/abott@adorable.png" <?php }else{ ?> src="/vulnapp/public/images/<?=$info[0]['avatar']?>" <?php } ?> alt=""
+          style="height: 32px; width: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <span class="d-block text-gray-dark"><strong><a style="color:#6c757d;" href="/vulnapp/profile/<?=$row['username']?>"><!-- Nguyen Anh Tien --><?=$row['name']?></a></strong><span>&nbsp;@<?=$row['username']?></span></span>
            <!--  Private link! Only followers can see. --><?=$row['post_content']?>
@@ -62,8 +62,8 @@
 
 
 <div class="media text-muted pt-3">
-          <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/deptrai@adorable.png" alt=""
-            style="height: 32px;">
+          <img class="rounded-circle mr-2"<?php if($info[0]['avatar']===NULL){ ?> src="https://api.adorable.io/avatars/285/abott@adorable.png" <?php }else{ ?> src="/vulnapp/public/images/<?=$info[0]['avatar']?>" <?php } ?> alt=""
+          style="height: 32px; width: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <span class="d-block text-gray-dark"><strong><a style="color:#6c757d;" href="/vulnapp/profile/<?=$row['username']?>"><!-- Nguyen Anh Tien --><?=$row['name']?></a></strong><span>&nbsp;@<?=$row['username']?></span></span>
            <!--  Private link! Only followers can see. --><?=$row['post_content']?>
@@ -85,8 +85,8 @@
 ?>
 
   <div class="media text-muted pt-3">
-          <img class="rounded-circle mr-2" src="https://api.adorable.io/avatars/285/deptrai@adorable.png" alt=""
-            style="height: 32px;">
+          <img class="rounded-circle mr-2" <?php if($info[0]['avatar']===NULL){ ?> src="https://api.adorable.io/avatars/285/abott@adorable.png" <?php }else{ ?> src="/vulnapp/public/images/<?=$info[0]['avatar']?>" <?php } ?> alt=""
+          style="height: 32px; width: 32px;">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <span class="d-block text-gray-dark"><strong><a style="color:#6c757d;" href="/vulnapp/profile/<?=$row['username']?>"><?=$row['name']?></a></strong><span>&nbsp;@<?=$row['username']?></span></span>
             Private link! Only followers can see.

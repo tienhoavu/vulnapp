@@ -85,6 +85,52 @@
 			}
 		}
 	}
+	$messageUpload = "";
+
+	$avatar = $db->getAvatar($_SESSION['user_id']);
+	if (isset($_POST['edit_profile'])) {
+		$target_dir = "public/images/";
+		$target_file = $target_dir . basename($_FILES['profile_image']['name']);
+		$allowUpload = true;
+		$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+		$maxfilesize = 900000;
+		$allowtypes = array('jpg','png','jpeg','gif');
+		$check = getimagesize($_FILES['profile_image']['tmp_name']);
+		if($check !==false){
+			$allowUpload = true;
+			$messageUpload = "<div class='alert alert-success'>Avatar Change Successfully</div>";
+		}
+		else{
+			$allowUpload = false;
+			$messageUpload = "<div class='alert alert-danger'>Avatar Change Failed</div>";
+		}
+		if ($_FILES['profile_image']['size'] > $maxfilesize) {
+			$allowUpload = false;
+			$messageUpload = "<div class='alert alert-danger'>Avatar Change Failed</div>";
+		}
+		if(!in_array($imageFileType, $allowtypes)){
+			$allowUpload = false;
+			$messageUpload = "<div class='alert alert-danger'>Avatar Change Failed</div>";
+		}
+		if($allowUpload){
+			$file_name = rand() . "." . $imageFileType;
+			$target_location = $target_dir . $file_name;
+			if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_location)) {
+				$messageUpload = "<div class='alert alert-success'>Avatar Change Successfully</div>";
+				$db->updateAvatar($_SESSION['user_id'],$file_name);
+				if($avatar[0]['avatar']!=NULL){
+					unlink($target_dir. $avatar[0]['avatar']);
+				}
+				$_SESSION['avatar'] = $file_name;
+			}
+			else{
+				$messageUpload = "<div class='alert alert-danger'>Avatar Change Failed</div>";
+			}
+		}
+		else{
+			$messageUpload = "<div class='alert alert-danger'>Avatar Change Failed</div>";
+		}
+	}
 	$info = $db->checkUser($username);
 	$checkFollow = $db->checkFollow($_SESSION['user_id'],$info[0]['user_id']);
 	if($checkFollow == FALSE){

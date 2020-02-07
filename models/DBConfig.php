@@ -294,5 +294,38 @@
 			}
 			return FALSE;
 		}
+		public function updateAvatar($user_id,$avatar){
+			$query = "UPDATE users SET avatar = :avatar WHERE user_id = :user_id";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id,
+				':avatar' => $avatar
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				return TRUE;
+			}
+			return FALSE;
+		}
+		public function getAvatar($user_id){
+			$query = "SELECT avatar FROM users WHERE user_id = :user_id";
+			$stmt = $this->conn->prepare($query);
+			$data = array(
+				':user_id' => $user_id
+			);
+			foreach ($data as $key => &$value) {
+				$stmt->bindParam($key,$value);
+			}
+			if($stmt->execute()){
+				if($stmt->rowCount()>0){
+					$result = $stmt->fetchAll();
+					return $result;
+				}
+				return FALSE;
+			}
+			return FALSE;
+		}
 	}
 ?>

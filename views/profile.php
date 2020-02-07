@@ -26,8 +26,8 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal"><a style="color:#212529;" href="/vulnapp/home">Cyber Links</a></h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <img class="rounded-circle" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
-          style="height: 32px;">
+        <img class="rounded-circle" <?php if($info[0]['avatar']===NULL){ ?> src="https://api.adorable.io/avatars/285/abott@adorable.png" <?php }else{ ?> src="/vulnapp/public/images/<?=$info[0]['avatar']?>" <?php } ?> alt=""
+          style="height: 32px; width: 32px;">
         <a class="p-2 text-dark" href="/vulnapp/profile/<?=$_SESSION['username']?>"><?=$_SESSION['name']?></a>
       </nav>
       <a class="btn btn-outline-primary" href="/vulnapp/signout">Sign out</a>
@@ -38,8 +38,16 @@
         <div class="row">
           <div class="col-4">
             <div class="d-flex flex-column my-3 p-3 bg-white rounded shadow-sm text-center">
+              <?php if($info[0]['avatar']===NULL){ ?>
               <img class="rounded-circle mx-auto" src="https://api.adorable.io/avatars/285/abott@adorable.png" alt=""
                 width="64" height="64">
+              <?php }
+                else{
+
+              ?>
+              <img class="rounded-circle mx-auto" src="/vulnapp/public/images/<?=$info[0]['avatar']?>" alt=""
+                width="64" height="64">
+              <?php } ?>
               <strong class="p-2 text-muted" href="#"><!-- @vigov5 --> <?="@".$info[0]['username']?> </strong>
               <a class="p-2 text-dark" href="/vulnapp/profile/<?=$info[0]['username']?>"><!-- Nguyen Anh Tien --> <?=$info[0]['name']?> </a>
               <div>
@@ -49,11 +57,14 @@
                 <hr>
                 <?php if($flag_rq_follow==1){ ?>
                 <div>
-                  <label for="exampleFormControlFile1">
-                    <h6>Change Avatar</h6>
-                  </label>
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                  <button class="btn-sm mt-2 btn-primary" href="#">Upload</button>
+                  <form action="" method="POST" enctype="multipart/form-data">
+                     <label for="exampleFormControlFile1">
+                      <h6>Change Avatar</h6>
+                    </label>
+                    <input type="file" name="profile_image" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
+                    <button type="submit" name="edit_profile" class="btn-sm mt-2 btn-primary" href="#">Upload</button>
+                    <span class="text-danger"><?=$messageUpload?></span>
+                  </form>
                 </div>
                 <?php } ?>
               </div>
